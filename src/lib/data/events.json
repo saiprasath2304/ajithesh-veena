@@ -1,0 +1,21 @@
+[
+	{
+		"date": "2026-12-20",
+		"time": "6:15 PM",
+		"title": "Veena Solo — Margazhi Season",
+		"venue": "Example Sabha, Mylapore",
+		"city": "Chennai",
+		"country": "India",
+		"presenter": "Example Fine Arts Society",
+		"notes": "Sample entry — replace this, or connect the Google Sheet (see README) so real dates load automatically."
+	},
+	{
+		"date": "2027-02-14",
+		"time": "7:00 PM",
+		"title": "Strings of the South — Veena Recital",
+		"venue": "Example Auditorium",
+		"city": "Bengaluru",
+		"country": "India",
+		"presenter": "Example Cultural Trust"
+	}
+]
