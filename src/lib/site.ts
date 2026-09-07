@@ -1,7 +1,7 @@
 /**
  * Single source of truth for editable site content.
  *
- * Ajithesh (or whoever maintains this) can edit everything below without touching
+ * Ajitesh (or whoever maintains this) can edit everything below without touching
  * any components. Anything marked `TODO` should be confirmed / replaced.
  *
  * Integration keys (contact form + events sheet) are NOT here — they live in
@@ -10,8 +10,8 @@
  */
 
 export const site = {
-	name: 'S Ajithesh',
-	shortName: 'Ajithesh',
+	name: 'S Ajitesh',
+	shortName: 'Ajitesh',
 	stageName: 'Ajitesh Veena',
 	role: 'Carnatic Veena Artist',
 	location: 'Chennai, India',
@@ -19,15 +19,15 @@ export const site = {
 	// Used for <title>, meta description, Open Graph, JSON-LD.
 	tagline: 'The Saraswati Veena — rooted in tradition, alive to the present.',
 	metaDescription:
-		'S Ajithesh is a Chennai-based Carnatic veena artist performing classical kritis and contemporary arrangements. Concerts, recordings and contact.',
+		'S Ajitesh is a Chennai-based Carnatic veena artist performing classical kritis and contemporary arrangements. Concerts, recordings and contact.',
 
 	// Absolute site URL (no trailing slash). Set once the Vercel domain is known.
 	url: 'https://ajithesh-veena.vercel.app', // TODO: replace with final domain
 
 	// Short bio — shown in the About section. Keep it to 2–3 paragraphs.
 	bio: [
-		'S Ajithesh is a Carnatic musician who plays the Saraswati veena. Based in Chennai, he performs a repertoire that runs from the classical varnams and kritis of the Trinity to his own arrangements of contemporary and film music for the instrument.',
-		'He began learning the veena under Smt. Vilasini Venkatarama and continued his advanced training as a disciple of Smt. Kalyani Ganesan. His playing is noted for a clean gamaka-rich style and a strong sense of laya.', // TODO: confirm gurus / wording with Ajithesh
+		'S Ajitesh is a Carnatic musician who plays the Saraswati veena. Based in Chennai, he performs a repertoire that runs from the classical varnams and kritis of the Trinity to his own arrangements of contemporary and film music for the instrument.',
+		'He began learning the veena under Smt. Vilasini Venkatarama and continued his advanced training as a disciple of Smt. Kalyani Ganesan. His playing is noted for a clean gamaka-rich style and a strong sense of laya.', // TODO: confirm gurus / wording with Ajitesh
 		'Alongside the concert stage he shares regular recordings on his YouTube channel, bringing the veena to listeners who may be meeting the instrument for the first time.'
 	],
 
@@ -74,8 +74,8 @@ export const site = {
 	 */
 	socials: [
 		{ label: 'YouTube', href: 'https://www.youtube.com/@ajiteshveena7246', icon: 'youtube' },
-		{ label: 'Instagram', href: 'https://instagram.com/', icon: 'instagram' }, // TODO: real handle
-		{ label: 'Facebook', href: 'https://facebook.com/', icon: 'facebook' }, // TODO
+		{ label: 'Instagram', href: 'https://www.instagram.com/s__ajitesh?stkn=MTV3YTBsaTl0Njh1ZA==', icon: 'instagram' }, // TODO: real handle
+		{ label: 'Facebook', href: 'https://www.facebook.com/share/18EmgM3ApP/', icon: 'facebook' }, // TODO
 		{ label: 'X', href: 'https://x.com/', icon: 'x' } // TODO
 		// { label: 'Spotify', href: 'https://open.spotify.com/artist/…', icon: 'spotify' },
 		// { label: 'Apple Music', href: 'https://music.apple.com/…', icon: 'apple' },

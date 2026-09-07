@@ -87,7 +87,7 @@
 	id="concerts"
 	eyebrow="Upcoming"
 	title="Concerts"
-	lead="Where to hear the veena live. Dates are kept up to date from Ajithesh's own schedule."
+	lead="Where to hear the veena live. Dates are kept up to date from Ajitesh's own schedule."
 >
 	<EventList upcoming={split.upcoming} past={split.past} loading={eventsLoading} />
 </Section>

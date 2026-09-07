@@ -1,6 +1,6 @@
-# S Ajithesh — Veena portfolio
+# S Ajitesh — Veena portfolio
 
-Portfolio site for Carnatic veena artist **S Ajithesh**: biography, upcoming
+Portfolio site for Carnatic veena artist **S Ajitesh**: biography, upcoming
 concerts, recordings, recognition and a contact form.
 
 - **SvelteKit** (Svelte 5) + **Tailwind CSS v4** + **shadcn-svelte** (`sera` preset)
@@ -25,7 +25,7 @@ npm run dev
 
 ---
 
-## What Ajithesh can edit (no coding)
+## What Ajitesh can edit (no coding)
 
 | Content | Where |
 | --- | --- |

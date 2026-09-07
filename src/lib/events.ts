@@ -2,7 +2,7 @@
  * Events / concerts.
  *
  * How it works (no backend, no rebuilds):
- *   1. Ajithesh keeps a Google Sheet of concerts (template: /events-template.csv).
+ *   1. Ajitesh keeps a Google Sheet of concerts (template: /events-template.csv).
  *   2. File ▸ Share ▸ Publish to web ▸ (the sheet) ▸ Comma-separated values (.csv).
  *   3. Paste that URL into the PUBLIC_EVENTS_SHEET_CSV_URL environment variable
  *      on Vercel.
