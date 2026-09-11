@@ -6,6 +6,7 @@
 	import Hero from '$lib/components/hero.svelte';
 	import EventList from '$lib/components/event-list.svelte';
 	import YoutubeGrid from '$lib/components/youtube-grid.svelte';
+	import MediaGallery from '$lib/components/media-gallery.svelte';
 	import ContactForm from '$lib/components/contact-form.svelte';
 	import VeenaMark from '$lib/components/veena-mark.svelte';
 	import { Button } from '$lib/components/ui/button/index.js';
@@ -48,7 +49,7 @@
 <div class="mx-auto max-w-5xl px-5"><div class="rule-ornament"></div></div>
 
 <!-- ABOUT -->
-<Section id="about" eyebrow="About" title="A voice for the veena">
+<Section id="about" eyebrow="About" title="A voice for the veena" icon="about">
 	<div class="grid gap-10 md:grid-cols-[1fr_0.8fr] md:gap-14">
 		<div class="space-y-4 text-pretty leading-relaxed text-muted-foreground">
 			{#each site.bio as para (para)}
@@ -82,24 +83,46 @@
 
 <div class="mx-auto max-w-5xl px-5"><div class="rule-ornament"></div></div>
 
+<!-- MEDIA -->
+<Section
+	id="media"
+	eyebrow="Media"
+	title="Photos & press"
+	lead="A short bio for programme notes and press, alongside a few photos from performances."
+	icon="media"
+>
+	<div class="grid gap-10 md:grid-cols-[0.8fr_1fr] md:gap-14">
+		<div class="space-y-4 text-pretty leading-relaxed text-muted-foreground">
+			{#each site.mediaBio as para (para)}
+				<p>{para}</p>
+			{/each}
+		</div>
+		<MediaGallery />
+	</div>
+</Section>
+
+<div class="mx-auto max-w-5xl px-5"><div class="rule-ornament"></div></div>
+
 <!-- CONCERTS -->
 <Section
 	id="concerts"
 	eyebrow="Upcoming"
 	title="Concerts"
 	lead="Where to hear the veena live. Dates are kept up to date from Ajitesh's own schedule."
+	icon="concerts"
 >
 	<EventList upcoming={split.upcoming} past={split.past} loading={eventsLoading} />
 </Section>
 
 <div class="mx-auto max-w-5xl px-5"><div class="rule-ornament"></div></div>
 
-<!-- LISTEN -->
+<!-- MUSIC -->
 <Section
-	id="listen"
-	eyebrow="Listen"
+	id="music"
+	eyebrow="Music"
 	title="From the recordings"
 	lead="A few pieces from the YouTube channel — traditional kritis alongside arrangements for the veena."
+	icon="music"
 >
 	<YoutubeGrid />
 	<div class="mt-8">
@@ -112,9 +135,9 @@
 
 <div class="mx-auto max-w-5xl px-5"><div class="rule-ornament"></div></div>
 
-<!-- RECOGNITION -->
+<!-- JOURNEY -->
 {#if site.achievements.length}
-	<Section id="recognition" eyebrow="Recognition" title="Awards & highlights">
+	<Section id="journey" eyebrow="Journey" title="The journey so far" icon="journey">
 		<ol class="relative space-y-8 border-l border-border pl-6">
 			{#each site.achievements as item (item.title)}
 				<li class="relative">
@@ -148,6 +171,7 @@
 	eyebrow="Contact"
 	title="Get in touch"
 	lead="For concert bookings, collaborations, lessons or press — send a note."
+	icon="contact"
 >
 	<ContactForm />
 </Section>

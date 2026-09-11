@@ -1,7 +1,6 @@
 <script lang="ts">
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
-	import { ModeWatcher } from 'mode-watcher';
 	import { Toaster } from '$lib/components/ui/sonner/index.js';
 	import { site } from '$lib/site.js';
 	import SiteHeader from '$lib/components/site-header.svelte';
@@ -27,7 +26,6 @@
 	{@html `<script type="application/ld+json">${JSON.stringify(jsonLd)}</` + `script>`}
 </svelte:head>
 
-<ModeWatcher />
 <Toaster position="bottom-right" />
 
 <div id="top" class="flex min-h-dvh flex-col">

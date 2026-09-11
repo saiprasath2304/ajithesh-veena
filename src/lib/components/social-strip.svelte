@@ -4,8 +4,9 @@
 
 	let {
 		class: className = '',
-		size = 'md'
-	}: { class?: string; size?: 'sm' | 'md' } = $props();
+		size = 'md',
+		variant = 'default'
+	}: { class?: string; size?: 'sm' | 'md'; variant?: 'default' | 'inverted' } = $props();
 
 	/**
 	 * Brand glyphs as raw SVG path data (24x24 viewBox).
@@ -46,7 +47,10 @@
 					aria-label={social.label}
 					title={social.label}
 					class={cn(
-						'group flex items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:border-primary hover:text-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none',
+						'group flex items-center justify-center rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none',
+						variant === 'inverted'
+							? 'border border-white/35 bg-white/10 text-white backdrop-blur-sm hover:border-white hover:bg-white/20'
+							: 'border border-border bg-card text-muted-foreground hover:border-primary hover:text-primary',
 						boxSize
 					)}
 				>
