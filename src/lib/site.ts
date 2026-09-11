@@ -31,37 +31,64 @@ export const site = {
 	// Absolute site URL (no trailing slash).
 	url: 'https://ajiteshveena.in', // TODO: confirm once the domain is live
 
-	// Short bio — shown in the About section. Keep it to 2–3 paragraphs.
+	// Short bio — shown in the About section. Sourced from the press-kit PDF.
+	// Keep it to 2–3 paragraphs.
 	bio: [
-		'S Ajitesh is a Carnatic musician who plays the Saraswati veena. Based in Chennai, he performs a repertoire that runs from the classical varnams and kritis of the Trinity to his own arrangements of contemporary and film music for the instrument.',
-		'He began learning the veena under Smt. Vilasini Venkatarama and continued his advanced training as a disciple of Smt. Kalyani Ganesan. His playing is noted for a clean gamaka-rich style and a strong sense of laya.', // TODO: confirm gurus / wording with Ajitesh
-		'Alongside the concert stage he shares regular recordings on his YouTube channel, bringing the veena to listeners who may be meeting the instrument for the first time.'
+		'Ajitesh is a young Carnatic musician and veena artiste who has performed extensively across concerts, music festivals and light-music shows. With a strong foundation in Carnatic music, he brings the same musicality and versatility to both classical and contemporary performances.',
+		'He began his musical journey under the guidance of Smt. Kalyani Ganesan mami, and has continued to develop his craft through years of training and performance — including several appearances at Prashanthi Nilayam, Puttaparthi, alongside numerous concerts and light-music programmes.',
+		'As a young artiste he continues to explore the space between traditional Carnatic music and the wider world of contemporary and light music, and shares recordings on his YouTube channel for listeners meeting the veena for the first time.'
 	],
 
-	// Shorter, press-kit style text for the Media section — alongside photos.
+	// Shorter, press-kit style text for the Media page — alongside photos.
 	mediaBio: [
-		'S Ajitesh performs Carnatic music on the Saraswati veena, presenting the classical repertoire of the Trinity alongside his own arrangements for the instrument.',
-		'For programme notes, an artist photograph or a formal bio for print, please use the contact form — high-resolution images are available on request.'
+		'Ajitesh is a young Carnatic musician and veena artiste who has performed extensively across concerts, music festivals and light-music shows — bringing the same musicality and versatility to both classical and contemporary performances.',
+		'He has performed at numerous prestigious events and venues, including in the presence of the Hon’ble Vice-President of India, the Hon’ble Governor of Tamil Nadu and other distinguished dignitaries, as well as multiple performances at Prashanthi Nilayam, Puttaparthi.',
+		'For programme notes, an artist photograph or a formal bio for print, a downloadable press kit is available below — high-resolution images are also available on request.'
 	],
+
+	// Downloadable one-page bio/press kit (PDF), linked from the Media page.
+	pressKitUrl: '/ajiteshveena-press-kit.pdf',
 
 	// Achievements / recognition, shown under the "Journey" section.
+	// `year` is optional — omit it if the date isn't confirmed yet; the
+	// timeline just skips the date badge for that entry.
 	// Add or remove freely — the list renders whatever is here.
 	achievements: [
 		{
-			year: '2025', // TODO: confirm year from the article
+			year: '2026',
+			title: 'Performed at the Lok Bhavan Banquet, Chennai',
+			description:
+				'Performed before the Hon’ble Vice-President of India, Thiru C. P. Radhakrishnan, at a banquet held in his honour at Lok Bhavan, Tamil Nadu.',
+			source: undefined
+		},
+		{
+			year: undefined, // date not confirmed yet
+			title: 'Performed at Raj Bhavan, Chennai',
+			description:
+				'Performed in the presence of the Vice-President of India, the Governor of Tamil Nadu, the Speaker of the Tamil Nadu Legislative Assembly, and other distinguished dignitaries.',
+			source: undefined
+		},
+		{
+			year: undefined, // date not confirmed yet
 			title: 'Winner — The Hindu Margazhi Music Competition (Veena)',
 			description:
-				'Selected among the winners of The Hindu Margazhi competition, earning the opportunity to perform before the Vice-President of India and the Governor of Tamil Nadu.',
+				'Recognised among the winners of The Hindu Margazhi competition, earning the opportunity to perform before the Vice-President of India and the Governor of Tamil Nadu.',
 			source: {
 				label: 'The Hindu',
 				href: 'https://www.thehindu.com/news/cities/chennai/winners-of-the-hindu-margazhi-competition-get-to-perform-before-vice-president-governor/article71390288.ece'
 			}
+		},
+		{
+			year: undefined, // date not confirmed yet
+			title: 'Recognised — Shakthi Sangeetha Sabha competitions',
+			description: 'Received recognition in music competitions conducted by Shakthi Sangeetha Sabha.',
+			source: undefined
 		}
 		// {
-		//   year: '2024',
+		//   year: '2024',                    // optional — omit if unconfirmed
 		//   title: 'Another award / title',
 		//   description: '…',
-		//   source: { label: 'Source name', href: 'https://…' } // source is optional
+		//   source: { label: 'Source name', href: 'https://…' } // optional
 		// }
 	],
 
@@ -101,23 +128,24 @@ export const site = {
 		// { label: 'Email', href: 'mailto:hello@example.com', icon: 'mail' },
 	],
 
-	// Fallback contact address, shown near the form and used if the form service
-	// is not configured. TODO: set a real address.
-	contactEmail: 'contact@example.com',
+	// Contact address, shown near the form and used if the form service isn't
+	// configured yet.
+	contactEmail: 'veenaajitesh@gmail.com',
 
 	// Optional small credit line in the footer (e.g. "Site by ___"). Leave `null`
 	// to keep it hidden — the footer already handles that case.
 	credit: null as { label: string; href: string } | null,
 
 	// Header / mobile-menu nav. `icon` keys are resolved in nav-icon.svelte —
-	// add a case there before using a new key.
+	// add a case there before using a new key. Media is a real page (/media);
+	// everything else is an anchor on the home page.
 	nav: [
-		{ label: 'About', href: '#about', icon: 'about' },
-		{ label: 'Media', href: '#media', icon: 'media' },
-		{ label: 'Concerts', href: '#concerts', icon: 'concerts' },
-		{ label: 'Music', href: '#music', icon: 'music' },
-		{ label: 'Journey', href: '#journey', icon: 'journey' },
-		{ label: 'Contact', href: '#contact', icon: 'contact' }
+		{ label: 'About', href: '/#about', icon: 'about' },
+		{ label: 'Media', href: '/media', icon: 'media' },
+		{ label: 'Concerts', href: '/#concerts', icon: 'concerts' },
+		{ label: 'Music', href: '/#music', icon: 'music' },
+		{ label: 'Journey', href: '/#journey', icon: 'journey' },
+		{ label: 'Contact', href: '/#contact', icon: 'contact' }
 	]
 } as const;
 

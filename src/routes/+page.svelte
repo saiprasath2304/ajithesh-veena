@@ -6,7 +6,6 @@
 	import Hero from '$lib/components/hero.svelte';
 	import EventList from '$lib/components/event-list.svelte';
 	import YoutubeGrid from '$lib/components/youtube-grid.svelte';
-	import MediaGallery from '$lib/components/media-gallery.svelte';
 	import ContactForm from '$lib/components/contact-form.svelte';
 	import VeenaMark from '$lib/components/veena-mark.svelte';
 	import { Button } from '$lib/components/ui/button/index.js';
@@ -83,26 +82,6 @@
 
 <div class="mx-auto max-w-5xl px-5"><div class="rule-ornament"></div></div>
 
-<!-- MEDIA -->
-<Section
-	id="media"
-	eyebrow="Media"
-	title="Photos & press"
-	lead="A short bio for programme notes and press, alongside a few photos from performances."
-	icon="media"
->
-	<div class="grid gap-10 md:grid-cols-[0.8fr_1fr] md:gap-14">
-		<div class="space-y-4 text-pretty leading-relaxed text-muted-foreground">
-			{#each site.mediaBio as para (para)}
-				<p>{para}</p>
-			{/each}
-		</div>
-		<MediaGallery />
-	</div>
-</Section>
-
-<div class="mx-auto max-w-5xl px-5"><div class="rule-ornament"></div></div>
-
 <!-- CONCERTS -->
 <Section
 	id="concerts"
@@ -144,7 +123,9 @@
 					<span
 						class="absolute -left-[27px] top-1.5 size-3 rounded-full border-2 border-background bg-primary"
 					></span>
-					<p class="text-xs font-medium tracking-widest text-primary">{item.year}</p>
+					{#if item.year}
+						<p class="text-xs font-medium tracking-widest text-primary">{item.year}</p>
+					{/if}
 					<h3 class="mt-1 font-heading text-lg font-semibold text-balance">{item.title}</h3>
 					<p class="mt-1.5 text-sm text-pretty text-muted-foreground">{item.description}</p>
 					{#if item.source}

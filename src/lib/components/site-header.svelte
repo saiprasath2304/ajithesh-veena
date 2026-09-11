@@ -11,7 +11,7 @@
 
 <header class="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-primary shadow-sm">
 	<div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-5">
-		<a href="#top" class="flex items-center">
+		<a href="/" class="flex items-center">
 			<Logo markClass="text-primary-foreground" textClass="text-primary-foreground" />
 		</a>
 

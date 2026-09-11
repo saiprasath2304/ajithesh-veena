@@ -11,7 +11,7 @@
 		class="mx-auto flex max-w-5xl flex-col gap-8 px-5 py-14 sm:flex-row sm:items-end sm:justify-between"
 	>
 		<div>
-			<a href="#top" class="flex items-center"><Logo /></a>
+			<a href="/" class="flex items-center"><Logo /></a>
 			<p class="mt-3 max-w-xs text-sm text-muted-foreground">
 				{site.role} · {site.location}
 			</p>
