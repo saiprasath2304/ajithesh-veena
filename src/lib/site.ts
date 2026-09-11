@@ -105,11 +105,9 @@ export const site = {
 	// is not configured. TODO: set a real address.
 	contactEmail: 'contact@example.com',
 
-	// Small credit line in the footer. Set to `null` to remove it entirely.
-	credit: { label: 'Saiprasath', href: 'https://github.com/saiprasath2304' } as {
-		label: string;
-		href: string;
-	} | null,
+	// Optional small credit line in the footer (e.g. "Site by ___"). Leave `null`
+	// to keep it hidden — the footer already handles that case.
+	credit: null as { label: string; href: string } | null,
 
 	// Header / mobile-menu nav. `icon` keys are resolved in nav-icon.svelte —
 	// add a case there before using a new key.
