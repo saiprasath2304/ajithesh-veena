@@ -20,7 +20,13 @@
 	class="relative isolate flex min-h-[36rem] items-center justify-center overflow-hidden pt-16 pb-14 md:min-h-[40rem]"
 >
 	{#if heroSrc}
-		<img src={heroSrc} alt="" class="absolute inset-0 -z-20 h-full w-full object-cover" />
+		<!-- object-position is tuned to keep the face in frame for the current
+		     portrait-shaped hero photo; re-tune the vertical % if that photo changes -->
+		<img
+			src={heroSrc}
+			alt=""
+			class="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_38%]"
+		/>
 		<div class="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/45 to-black/25"
 		></div>
 		<div class="absolute inset-0 -z-10 bg-primary/25 mix-blend-multiply"></div>
