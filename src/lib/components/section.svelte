@@ -14,7 +14,7 @@
 	}: {
 		id: string;
 		eyebrow?: string;
-		title: string;
+		title?: string;
 		lead?: string;
 		/** key from nav-icon.svelte — shown as a large badge above the heading */
 		icon?: string;
@@ -34,7 +34,9 @@
 			{#if eyebrow}
 				<p class="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-primary">{eyebrow}</p>
 			{/if}
-			<h2 class="text-3xl font-semibold text-balance md:text-4xl">{title}</h2>
+			{#if title}
+				<h2 class="text-3xl font-semibold text-balance md:text-4xl">{title}</h2>
+			{/if}
 			{#if lead}
 				<p class="mt-4 text-lg text-muted-foreground text-pretty">{lead}</p>
 			{/if}

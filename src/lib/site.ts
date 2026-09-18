@@ -4,9 +4,9 @@
  * Ajitesh (or whoever maintains this) can edit everything below without touching
  * any components. Anything marked `TODO` should be confirmed / replaced.
  *
- * Integration keys (contact form + events sheet) are NOT here — they live in
- * environment variables so they can be changed on Vercel without a code change.
- * See `.env.example`.
+ * Integration keys (contact form + events/journey sheets) are NOT here — they
+ * live in environment variables so they can be changed on Vercel without a
+ * code change. See `.env.example`.
  */
 
 export const site = {
@@ -16,17 +16,22 @@ export const site = {
 	stageName: 'Ajitesh Veena',
 	// Stylised wordmark — used in the header/footer logo lockup and the
 	// copyright line. Once a real logo image is dropped at
-	// src/lib/assets/logo.(svg|png|webp) it replaces this text automatically
+	// src/lib/assets/logo.(svg|png|jpg|webp) it replaces this text automatically
 	// (see logo.svelte) — the name still appears as alt text/copyright.
 	brand: 'AjiteshVeena',
 	domain: 'ajiteshveena.in', // TODO: confirm once the domain is registered/live
+
+	// Kept for <title> tags / JSON-LD only — not shown as visible page copy
+	// (the hero/footer used to show "role · location"; removed since the
+	// location read as limiting rather than descriptive).
 	role: 'Carnatic Veena Artist',
 	location: 'Chennai, India',
 
-	// Used for <title>, meta description, Open Graph, JSON-LD.
-	tagline: 'The Saraswati Veena — rooted in tradition, alive to the present.',
+	// The three words shown large over the home screen photo.
+	heroWords: ['Music', 'Magic', 'Miracle'],
+
 	metaDescription:
-		'S Ajitesh is a Chennai-based Carnatic veena artist performing classical kritis and contemporary arrangements. Concerts, recordings and contact.',
+		'S Ajitesh is a Carnatic veena artist performing classical kritis and contemporary arrangements. Concerts, recordings and contact.',
 
 	// Absolute site URL (no trailing slash).
 	url: 'https://ajiteshveena.in', // TODO: confirm once the domain is live
@@ -49,59 +54,15 @@ export const site = {
 	// Downloadable one-page bio/press kit (PDF), linked from the Media page.
 	pressKitUrl: '/ajiteshveena-press-kit.pdf',
 
-	// Achievements / recognition, shown under the "Journey" section.
-	// `year` is optional — omit it if the date isn't confirmed yet; the
-	// timeline just skips the date badge for that entry.
-	// Add or remove freely — the list renders whatever is here.
-	achievements: [
-		{
-			year: '2026',
-			title: 'Performed at the Lok Bhavan Banquet, Chennai',
-			description:
-				'Performed before the Hon’ble Vice-President of India, Thiru C. P. Radhakrishnan, at a banquet held in his honour at Lok Bhavan, Tamil Nadu.',
-			source: undefined
-		},
-		{
-			year: undefined, // date not confirmed yet
-			title: 'Performed at Raj Bhavan, Chennai',
-			description:
-				'Performed in the presence of the Vice-President of India, the Governor of Tamil Nadu, the Speaker of the Tamil Nadu Legislative Assembly, and other distinguished dignitaries.',
-			source: undefined
-		},
-		{
-			year: undefined, // date not confirmed yet
-			title: 'Winner — The Hindu Margazhi Music Competition (Veena)',
-			description:
-				'Recognised among the winners of The Hindu Margazhi competition, earning the opportunity to perform before the Vice-President of India and the Governor of Tamil Nadu.',
-			source: {
-				label: 'The Hindu',
-				href: 'https://www.thehindu.com/news/cities/chennai/winners-of-the-hindu-margazhi-competition-get-to-perform-before-vice-president-governor/article71390288.ece'
-			}
-		},
-		{
-			year: undefined, // date not confirmed yet
-			title: 'Recognised — Shakthi Sangeetha Sabha competitions',
-			description: 'Received recognition in music competitions conducted by Shakthi Sangeetha Sabha.',
-			source: undefined
-		}
-		// {
-		//   year: '2024',                    // optional — omit if unconfirmed
-		//   title: 'Another award / title',
-		//   description: '…',
-		//   source: { label: 'Source name', href: 'https://…' } // optional
-		// }
-	],
-
 	// YouTube — channel + a few videos to feature in the "Music" section.
 	youtube: {
 		channelUrl: 'https://www.youtube.com/@ajiteshveena7246',
 		channelId: 'UCIP7jI-2R-aNO16Qs1mfNZA',
-		// Just the video IDs. Reorder / swap anytime.
+		// Just the video IDs. Reorder / swap anytime — leave the array shorter
+		// than 4 and the grid just shows fewer tiles.
 		featured: [
-			{ id: 'xz6UzsZo9tc', title: 'Varnam — Sami Ninne · Sankarabharanam' },
-			{ id: 'LGZhLfdN6hA', title: 'Gopika Manoharam · Mohanam · Dikshitar' },
-			{ id: '8Iw0ojeu7HM', title: 'Brochevarevare · Sriranjani · Tyagaraja' },
-			{ id: 'h6J84jcTLmw', title: 'Megham Karukatha · Tiruchitrambalam' }
+			{ id: 'm815UPVOxms', title: 'Thaye Thripura Sundari · Suddha Saveri · Periyasaami Tooran' },
+			{ id: 'EshK--ZY3Vc', title: 'Indha Maan · Karakattakaran · Ilaiyaraaja' }
 		]
 	},
 
@@ -132,22 +93,23 @@ export const site = {
 	// configured yet.
 	contactEmail: 'veenaajitesh@gmail.com',
 
-	// Optional small credit line in the footer (e.g. "Site by ___"). Leave `null`
-	// to keep it hidden — the footer already handles that case.
-	credit: null as { label: string; href: string } | null,
+	// Small credit line in the footer. Set to `null` to remove it.
+	credit: { label: 'Saiprasath', href: 'https://github.com/saiprasath2304' } as {
+		label: string;
+		href: string;
+	} | null,
 
 	// Header / mobile-menu nav. `icon` keys are resolved in nav-icon.svelte —
-	// add a case there before using a new key. Media is a real page (/media);
+	// add a case there before using a new key. Media and Journey are real pages;
 	// everything else is an anchor on the home page.
 	nav: [
 		{ label: 'About', href: '/#about', icon: 'about' },
 		{ label: 'Media', href: '/media', icon: 'media' },
 		{ label: 'Concerts', href: '/#concerts', icon: 'concerts' },
 		{ label: 'Music', href: '/#music', icon: 'music' },
-		{ label: 'Journey', href: '/#journey', icon: 'journey' },
+		{ label: 'Journey', href: '/journey', icon: 'journey' },
 		{ label: 'Contact', href: '/#contact', icon: 'contact' }
 	]
 } as const;
 
-export type Achievement = (typeof site.achievements)[number];
 export type Social = (typeof site.socials)[number];

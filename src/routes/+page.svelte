@@ -48,7 +48,7 @@
 <div class="mx-auto max-w-5xl px-5"><div class="rule-ornament"></div></div>
 
 <!-- ABOUT -->
-<Section id="about" eyebrow="About" title="A voice for the veena" icon="about">
+<Section id="about" eyebrow="About" icon="about">
 	<div class="grid gap-10 md:grid-cols-[1fr_0.8fr] md:gap-14">
 		<div class="space-y-4 text-pretty leading-relaxed text-muted-foreground">
 			{#each site.bio as para (para)}
@@ -100,7 +100,7 @@
 	id="music"
 	eyebrow="Music"
 	title="From the recordings"
-	lead="A few pieces from the YouTube channel — traditional kritis alongside arrangements for the veena."
+	lead="A few pieces from the YouTube channel."
 	icon="music"
 >
 	<YoutubeGrid />
@@ -114,44 +114,12 @@
 
 <div class="mx-auto max-w-5xl px-5"><div class="rule-ornament"></div></div>
 
-<!-- JOURNEY -->
-{#if site.achievements.length}
-	<Section id="journey" eyebrow="Journey" title="The journey so far" icon="journey">
-		<ol class="relative space-y-8 border-l border-border pl-6">
-			{#each site.achievements as item (item.title)}
-				<li class="relative">
-					<span
-						class="absolute -left-[27px] top-1.5 size-3 rounded-full border-2 border-background bg-primary"
-					></span>
-					{#if item.year}
-						<p class="text-xs font-medium tracking-widest text-primary">{item.year}</p>
-					{/if}
-					<h3 class="mt-1 font-heading text-lg font-semibold text-balance">{item.title}</h3>
-					<p class="mt-1.5 text-sm text-pretty text-muted-foreground">{item.description}</p>
-					{#if item.source}
-						<a
-							href={item.source.href}
-							target="_blank"
-							rel="noopener"
-							class="mt-2 inline-flex items-center gap-1 text-sm text-primary underline underline-offset-4"
-						>
-							{item.source.label} <ExternalLinkIcon class="size-3.5" />
-						</a>
-					{/if}
-				</li>
-			{/each}
-		</ol>
-	</Section>
-
-	<div class="mx-auto max-w-5xl px-5"><div class="rule-ornament"></div></div>
-{/if}
-
 <!-- CONTACT -->
 <Section
 	id="contact"
 	eyebrow="Contact"
 	title="Get in touch"
-	lead="For concert bookings, collaborations, lessons or press — send a note."
+	lead="For concert bookings, collaborations or press — send a note."
 	icon="contact"
 >
 	<ContactForm />

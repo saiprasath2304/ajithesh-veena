@@ -118,7 +118,7 @@
 				/>
 			</div>
 
-			<div class="flex items-center gap-4">
+			<div class="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4">
 				<Button type="submit" disabled={submitting || !configured}>
 					{#if submitting}
 						<LoaderIcon class="size-4 animate-spin" /> Sending…
@@ -126,7 +126,7 @@
 						<SendIcon class="size-4" /> Send message
 					{/if}
 				</Button>
-				<p class="text-xs text-muted-foreground">
+				<p class="text-xs break-words text-muted-foreground">
 					or email <a class="underline" href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
 				</p>
 			</div>

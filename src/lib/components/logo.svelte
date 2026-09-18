@@ -5,7 +5,7 @@
 
 	/**
 	 * Wordmark used in the header and footer. Drop a real logo image at
-	 * src/lib/assets/logo.(svg|png|webp) and it replaces the icon + text
+	 * src/lib/assets/logo.(svg|png|jpg|webp) and it replaces the icon + text
 	 * automatically — nothing else needs to change.
 	 */
 	let {
@@ -14,7 +14,7 @@
 		textClass = ''
 	}: { class?: string; markClass?: string; textClass?: string } = $props();
 
-	const logos = import.meta.glob('$lib/assets/logo.{svg,png,webp}', {
+	const logos = import.meta.glob('$lib/assets/logo.{svg,png,jpg,jpeg,webp}', {
 		eager: true,
 		query: '?url',
 		import: 'default'

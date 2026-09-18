@@ -16,7 +16,6 @@
 		jobTitle: site.role,
 		description: site.metaDescription,
 		url: site.url,
-		address: { '@type': 'PostalAddress', addressLocality: site.location },
 		sameAs: site.socials.map((s) => s.href)
 	};
 </script>

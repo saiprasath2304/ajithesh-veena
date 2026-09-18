@@ -1,5 +1,9 @@
 <script lang="ts">
 	import VeenaMark from './veena-mark.svelte';
+	import * as Dialog from '$lib/components/ui/dialog/index.js';
+	import { Button } from '$lib/components/ui/button/index.js';
+	import DownloadIcon from '@lucide/svelte/icons/download';
+	import Maximize2Icon from '@lucide/svelte/icons/maximize-2';
 
 	// Drop photos at src/lib/assets/gallery/*.(jpg|jpeg|png|webp) — sorted by
 	// filename, so prefix them (01-, 02-, …) to control the order. The bit of
@@ -23,33 +27,68 @@
 
 	const photos = Object.keys(images)
 		.sort((a, b) => a.localeCompare(b))
-		.map((path, i) => ({
-			src: images[path] as string,
-			caption: captionFrom(path),
-			tilt: TILTS[i % TILTS.length]
-		}));
+		.map((path, i) => {
+			const file = path.split('/').pop() ?? 'photo.jpg';
+			return {
+				src: images[path] as string,
+				caption: captionFrom(path),
+				filename: file.replace(/^\d+[-_ ]*/, ''),
+				tilt: TILTS[i % TILTS.length]
+			};
+		});
+
+	let dialogOpen = $state(false);
+	let selected = $state<number | null>(null);
+
+	function openPhoto(i: number) {
+		selected = i;
+		dialogOpen = true;
+	}
 </script>
 
 {#if photos.length}
 	<div class="rounded-2xl bg-muted/60 p-6 sm:p-10">
 		<div class="flex flex-wrap justify-center gap-x-6 gap-y-10 sm:gap-x-8">
-			{#each photos as photo (photo.src)}
+			{#each photos as photo, i (photo.src)}
 				<div
-					class="wall-photo relative w-40 shrink-0 bg-card p-2.5 pb-6 shadow-md ring-1 ring-black/5 hover:z-10 hover:shadow-xl sm:w-48"
+					class="wall-photo group relative w-40 shrink-0 bg-card p-2.5 pb-6 shadow-md ring-1 ring-black/5 hover:z-10 hover:shadow-xl sm:w-48"
 					style={`--tilt: ${photo.tilt}deg;`}
 				>
 					<span
 						class="absolute -top-2.5 left-1/2 size-4 -translate-x-1/2 rounded-full bg-primary shadow-sm ring-2 ring-primary-foreground/60"
 						aria-hidden="true"
 					></span>
-					<div class="aspect-square overflow-hidden bg-muted">
+
+					<button
+						type="button"
+						class="relative block aspect-square w-full overflow-hidden bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+						onclick={() => openPhoto(i)}
+						aria-label={`View ${photo.caption} larger`}
+					>
 						<img
 							src={photo.src}
 							alt={photo.caption}
 							loading="lazy"
 							class="h-full w-full object-cover"
 						/>
-					</div>
+						<span
+							class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all group-hover:bg-black/25 group-hover:opacity-100"
+						>
+							<Maximize2Icon class="size-5 text-white drop-shadow" />
+						</span>
+					</button>
+
+					<a
+						href={photo.src}
+						download={photo.filename}
+						onclick={(e) => e.stopPropagation()}
+						aria-label={`Download ${photo.caption}`}
+						title="Download"
+						class="absolute right-1.5 bottom-7 flex size-7 items-center justify-center rounded-full bg-background/95 text-foreground opacity-100 shadow ring-1 ring-black/10 transition-opacity hover:bg-background sm:opacity-0 sm:group-hover:opacity-100"
+					>
+						<DownloadIcon class="size-3.5" />
+					</a>
+
 					<p class="mt-2 truncate text-center font-heading text-xs text-muted-foreground">
 						{photo.caption}
 					</p>
@@ -57,6 +96,27 @@
 			{/each}
 		</div>
 	</div>
+
+	<Dialog.Root bind:open={dialogOpen}>
+		<Dialog.Content class="sm:max-w-2xl">
+			{#if selected !== null}
+				{@const photo = photos[selected]}
+				<Dialog.Title class="sr-only">{photo.caption}</Dialog.Title>
+				<Dialog.Description class="sr-only">Enlarged photo — {photo.caption}</Dialog.Description>
+				<img
+					src={photo.src}
+					alt={photo.caption}
+					class="max-h-[70vh] w-full rounded-md object-contain"
+				/>
+				<Dialog.Footer class="flex-row items-center justify-between">
+					<p class="text-sm text-muted-foreground">{photo.caption}</p>
+					<Button href={photo.src} download={photo.filename} size="sm" variant="outline">
+						<DownloadIcon class="size-4" /> Download
+					</Button>
+				</Dialog.Footer>
+			{/if}
+		</Dialog.Content>
+	</Dialog.Root>
 {:else}
 	<div
 		class="flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-border p-10 text-center text-muted-foreground"
