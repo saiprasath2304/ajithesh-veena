@@ -36,7 +36,7 @@
 	icon="journey"
 	class="pt-32 md:pt-40"
 >
-	<div class="grid gap-14 md:grid-cols-[1.3fr_1fr]">
+	<div class="grid items-start gap-14 md:grid-cols-[1.3fr_1fr]">
 		{#if loading}
 			<div class="space-y-8">
 				{#each { length: 3 } as _, i (i)}
@@ -57,21 +57,27 @@
 						{/if}
 						<h3 class="mt-1 font-heading text-lg font-semibold text-balance">{item.title}</h3>
 						<p class="mt-1.5 text-sm text-pretty text-muted-foreground">{item.description}</p>
-						{#if item.sourceUrl}
-							<a
-								href={item.sourceUrl}
-								target="_blank"
-								rel="noopener"
-								class="mt-2 inline-flex items-center gap-1 text-sm text-primary underline underline-offset-4"
-							>
-								{item.sourceLabel ?? 'Source'} <ExternalLinkIcon class="size-3.5" />
-							</a>
+						{#if item.sources.length}
+							<div class="mt-3 flex flex-wrap gap-2">
+								{#each item.sources as src (src.url)}
+									<a
+										href={src.url}
+										target="_blank"
+										rel="noopener"
+										class="inline-flex items-center gap-1 rounded-full border border-primary/25 bg-primary/5 px-2.5 py-1 text-xs font-medium text-primary transition-colors hover:bg-primary/10"
+									>
+										{src.label} <ExternalLinkIcon class="size-3" />
+									</a>
+								{/each}
+							</div>
 						{/if}
 					</li>
 				{/each}
 			</ol>
 		{/if}
 
-		<JourneyGallery />
+		<div class="md:sticky md:top-24">
+			<JourneyGallery />
+		</div>
 	</div>
 </Section>

@@ -93,12 +93,6 @@ export const site = {
 	// configured yet.
 	contactEmail: 'veenaajitesh@gmail.com',
 
-	// Small credit line in the footer. Set to `null` to remove it.
-	credit: { label: 'Saiprasath', href: 'https://github.com/saiprasath2304' } as {
-		label: string;
-		href: string;
-	} | null,
-
 	// Header / mobile-menu nav. `icon` keys are resolved in nav-icon.svelte —
 	// add a case there before using a new key. Media and Journey are real pages;
 	// everything else is an anchor on the home page.

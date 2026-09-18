@@ -2,20 +2,27 @@
 	{
 		"year": "2026",
 		"title": "Performed at the Lok Bhavan Banquet, Chennai",
-		"description": "Performed before the Hon'ble Vice-President of India, Thiru C. P. Radhakrishnan, at a banquet held in his honour at Lok Bhavan, Tamil Nadu."
+		"description": "Performed before the Hon'ble Vice-President of India, Thiru C. P. Radhakrishnan, at a banquet held in his honour at Lok Bhavan, Tamil Nadu.",
+		"sources": []
 	},
 	{
 		"title": "Performed at Raj Bhavan, Chennai",
-		"description": "Performed in the presence of the Vice-President of India, the Governor of Tamil Nadu, the Speaker of the Tamil Nadu Legislative Assembly, and other distinguished dignitaries."
+		"description": "Performed in the presence of the Vice-President of India, the Governor of Tamil Nadu, the Speaker of the Tamil Nadu Legislative Assembly, and other distinguished dignitaries.",
+		"sources": []
 	},
 	{
 		"title": "Winner — The Hindu Margazhi Music Competition (Veena)",
 		"description": "Recognised among the winners of The Hindu Margazhi competition, earning the opportunity to perform before the Vice-President of India and the Governor of Tamil Nadu.",
-		"sourceLabel": "The Hindu",
-		"sourceUrl": "https://www.thehindu.com/news/cities/chennai/winners-of-the-hindu-margazhi-competition-get-to-perform-before-vice-president-governor/article71390288.ece"
+		"sources": [
+			{
+				"label": "The Hindu",
+				"url": "https://www.thehindu.com/news/cities/chennai/winners-of-the-hindu-margazhi-competition-get-to-perform-before-vice-president-governor/article71390288.ece"
+			}
+		]
 	},
 	{
 		"title": "Recognised — Shakthi Sangeetha Sabha competitions",
-		"description": "Received recognition in music competitions conducted by Shakthi Sangeetha Sabha."
+		"description": "Received recognition in music competitions conducted by Shakthi Sangeetha Sabha.",
+		"sources": []
 	}
 ]
