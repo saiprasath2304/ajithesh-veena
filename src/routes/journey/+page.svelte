@@ -3,8 +3,7 @@
 	import { site } from '$lib/site.js';
 	import { loadJourney, type JourneyEntry } from '$lib/journey.js';
 	import Section from '$lib/components/section.svelte';
-	import JourneyGallery from '$lib/components/journey-gallery.svelte';
-	import ExternalLinkIcon from '@lucide/svelte/icons/external-link';
+	import VeenaMark from '$lib/components/veena-mark.svelte';
 
 	let entries = $state<JourneyEntry[]>([]);
 	let loading = $state(true);
@@ -14,6 +13,20 @@
 		entries = loaded;
 		loading = false;
 	});
+
+	// Curated photos for the timeline — drop files in src/lib/assets/journey/
+	// (any filenames, sorted alphabetically). One is woven in every couple of
+	// entries, alternating left/right, in the spirit of ranjanigayatri.com/about.
+	const journeyImages = import.meta.glob('$lib/assets/journey/*.{jpg,jpeg,png,webp}', {
+		eager: true,
+		query: '?url',
+		import: 'default'
+	});
+	const journeyPhotos = Object.keys(journeyImages)
+		.sort((a, b) => a.localeCompare(b))
+		.map((k) => journeyImages[k] as string);
+
+	const GROUP_SIZE = 2;
 </script>
 
 <svelte:head>
@@ -34,50 +47,56 @@
 	title="The journey so far"
 	lead="Notable performances and recognition, updated as they happen."
 	icon="journey"
-	class="pt-32 md:pt-40"
 >
-	<div class="grid items-start gap-14 md:grid-cols-[1.3fr_1fr]">
-		{#if loading}
-			<div class="space-y-8">
-				{#each { length: 3 } as _, i (i)}
-					<div class="h-20 animate-pulse rounded-xl bg-muted/60"></div>
-				{/each}
-			</div>
-		{:else if entries.length === 0}
-			<p class="text-muted-foreground">Nothing to show here yet — check back soon.</p>
-		{:else}
-			<ol class="relative space-y-8 border-l border-border pl-6">
-				{#each entries as item (item.title)}
-					<li class="relative">
-						<span
-							class="absolute -left-[27px] top-1.5 size-3 rounded-full border-2 border-background bg-primary"
-						></span>
-						{#if item.year}
-							<p class="text-xs font-medium tracking-widest text-primary">{item.year}</p>
-						{/if}
-						<h3 class="mt-1 font-heading text-lg font-semibold text-balance">{item.title}</h3>
-						<p class="mt-1.5 text-sm text-pretty text-muted-foreground">{item.description}</p>
-						{#if item.sources.length}
-							<div class="mt-3 flex flex-wrap gap-2">
-								{#each item.sources as src (src.url)}
-									<a
-										href={src.url}
-										target="_blank"
-										rel="noopener"
-										class="inline-flex items-center gap-1 rounded-full border border-primary/25 bg-primary/5 px-2.5 py-1 text-xs font-medium text-primary transition-colors hover:bg-primary/10"
-									>
-										{src.label} <ExternalLinkIcon class="size-3" />
-									</a>
-								{/each}
-							</div>
-						{/if}
-					</li>
-				{/each}
-			</ol>
-		{/if}
-
-		<div class="md:sticky md:top-24">
-			<JourneyGallery />
+	{#if loading}
+		<div class="space-y-8">
+			{#each { length: 3 } as _, i (i)}
+				<div class="h-20 animate-pulse rounded-xl bg-muted/60"></div>
+			{/each}
 		</div>
-	</div>
+	{:else if entries.length === 0}
+		<p class="text-muted-foreground">Nothing to show here yet — check back soon.</p>
+	{:else}
+		<ol class="relative max-w-3xl space-y-8 border-l border-border pl-6">
+			{#each entries as item, i (item.title)}
+				<li class="relative">
+					<span
+						class="absolute -left-[27px] top-1.5 size-3 rounded-full border-2 border-background bg-primary"
+					></span>
+					{#if item.year}
+						<p class="text-xs font-medium tracking-widest text-primary">{item.year}</p>
+					{/if}
+					<h3 class="mt-1 font-heading text-lg font-semibold text-balance">{item.title}</h3>
+					<p class="mt-1.5 text-sm text-pretty text-muted-foreground">{item.description}</p>
+				</li>
+
+				{#if (i + 1) % GROUP_SIZE === 0}
+					{@const photoIndex = Math.floor(i / GROUP_SIZE)}
+					{#if journeyPhotos[photoIndex]}
+						<li class="relative list-none py-2">
+							<div class={photoIndex % 2 === 0 ? 'ml-auto w-4/5 sm:w-3/5' : 'mr-auto w-4/5 sm:w-3/5'}>
+								<img
+									src={journeyPhotos[photoIndex]}
+									alt=""
+									loading="lazy"
+									class="aspect-[4/3] w-full rounded-xl object-cover shadow-md"
+								/>
+							</div>
+						</li>
+					{/if}
+				{/if}
+			{/each}
+		</ol>
+
+		{#if journeyPhotos.length === 0}
+			<div
+				class="mt-10 flex max-w-3xl flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-border p-8 text-center text-muted-foreground"
+			>
+				<VeenaMark class="h-7 w-7 text-primary/50" />
+				<p class="text-sm">
+					Add photos to <code>src/lib/assets/journey/</code> to weave them into the timeline.
+				</p>
+			</div>
+		{/if}
+	{/if}
 </Section>

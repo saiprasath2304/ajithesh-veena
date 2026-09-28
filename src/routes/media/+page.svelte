@@ -24,7 +24,6 @@
 	title="Photos & press"
 	lead="A short bio for programme notes and press, alongside a few photos from performances."
 	icon="media"
-	class="pt-32 md:pt-40"
 >
 	<div class="max-w-2xl space-y-4 text-pretty leading-relaxed text-muted-foreground">
 		{#each site.mediaBio as para (para)}

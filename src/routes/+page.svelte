@@ -87,7 +87,7 @@
 	id="concerts"
 	eyebrow="Upcoming"
 	title="Concerts"
-	lead="Where to hear the veena live. Dates are kept up to date from Ajitesh's own schedule."
+	lead="Explore upcoming performances"
 	icon="concerts"
 >
 	<EventList upcoming={split.upcoming} past={split.past} loading={eventsLoading} />

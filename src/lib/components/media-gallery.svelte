@@ -7,8 +7,8 @@
 
 	// Drop photos at src/lib/assets/gallery/*.(jpg|jpeg|png|webp) — sorted by
 	// filename, so prefix them (01-, 02-, …) to control the order. The bit of
-	// the filename after the number becomes the little caption on the photo,
-	// e.g. "02-lok-bhavan-2.jpg" -> "Lok Bhavan 2".
+	// the filename after the number is used as alt text / aria-labels only
+	// (e.g. "02-lok-bhavan-2.jpg" -> "Lok Bhavan 2") — not shown on the page.
 	const images = import.meta.glob('$lib/assets/gallery/*.{jpg,jpeg,png,webp}', {
 		eager: true,
 		query: '?url',
@@ -88,10 +88,6 @@
 					>
 						<DownloadIcon class="size-3.5" />
 					</a>
-
-					<p class="mt-2 truncate text-center font-heading text-xs text-muted-foreground">
-						{photo.caption}
-					</p>
 				</div>
 			{/each}
 		</div>
@@ -108,8 +104,7 @@
 					alt={photo.caption}
 					class="max-h-[70vh] w-full rounded-md object-contain"
 				/>
-				<Dialog.Footer class="flex-row items-center justify-between">
-					<p class="text-sm text-muted-foreground">{photo.caption}</p>
+				<Dialog.Footer class="flex-row items-center justify-end">
 					<Button href={photo.src} download={photo.filename} size="sm" variant="outline">
 						<DownloadIcon class="size-4" /> Download
 					</Button>
