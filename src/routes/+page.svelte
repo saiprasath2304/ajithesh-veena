@@ -50,7 +50,9 @@
 <!-- ABOUT -->
 <Section id="about" eyebrow="About" icon="about">
 	<div class="grid gap-10 md:grid-cols-[1fr_0.8fr] md:gap-14">
-		<div class="space-y-4 text-pretty leading-relaxed text-muted-foreground">
+		<div
+			class="space-y-4 rounded-2xl bg-card p-6 text-pretty leading-relaxed text-muted-foreground shadow-sm md:p-8"
+		>
 			{#each site.bio as para (para)}
 				<p>{para}</p>
 			{/each}
@@ -62,7 +64,7 @@
 					<img
 						src={portraitSrc}
 						alt={`${site.name} playing the veena`}
-						class="h-full w-full object-cover"
+						class="h-full w-full object-cover object-[78%_center]"
 					/>
 				{:else}
 					<div

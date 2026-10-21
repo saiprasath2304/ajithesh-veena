@@ -23,7 +23,7 @@
 	} = $props();
 </script>
 
-<section {id} class={cn('scroll-mt-20 py-20 md:py-28', className)}>
+<section {id} class={cn('scroll-mt-20 pt-16 pb-20 md:pb-28', className)}>
 	<div class="mx-auto max-w-5xl px-5">
 		<header class="mb-12 max-w-2xl">
 			{#if icon}

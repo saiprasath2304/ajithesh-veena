@@ -25,7 +25,9 @@
 	lead="A short bio for programme notes and press, alongside a few photos from performances."
 	icon="media"
 >
-	<div class="max-w-2xl space-y-4 text-pretty leading-relaxed text-muted-foreground">
+	<div
+		class="max-w-2xl space-y-4 rounded-2xl bg-card p-6 text-pretty leading-relaxed text-muted-foreground shadow-sm md:p-8"
+	>
 		{#each site.mediaBio as para (para)}
 			<p>{para}</p>
 		{/each}

@@ -17,6 +17,8 @@
 	// Curated photos for the timeline — drop files in src/lib/assets/journey/
 	// (any filenames, sorted alphabetically). One is woven in every couple of
 	// entries, alternating left/right, in the spirit of ranjanigayatri.com/about.
+	// Any photos left over once the timeline runs out trail after it, still
+	// alternating, so nothing dropped in the folder goes unused.
 	const journeyImages = import.meta.glob('$lib/assets/journey/*.{jpg,jpeg,png,webp}', {
 		eager: true,
 		query: '?url',
@@ -27,6 +29,8 @@
 		.map((k) => journeyImages[k] as string);
 
 	const GROUP_SIZE = 2;
+	const usedInline = $derived(Math.floor(entries.length / GROUP_SIZE));
+	const trailingPhotos = $derived(journeyPhotos.slice(usedInline));
 </script>
 
 <svelte:head>
@@ -40,6 +44,19 @@
 	<meta property="og:title" content={`Journey — ${site.name}`} />
 	<meta property="og:url" content={`${site.url}/journey`} />
 </svelte:head>
+
+{#snippet photoBlock(src: string, index: number)}
+	<li class="relative list-none py-2">
+		<div class={index % 2 === 0 ? 'ml-auto w-4/5 sm:w-3/5' : 'mr-auto w-4/5 sm:w-3/5'}>
+			<img
+				{src}
+				alt=""
+				loading="lazy"
+				class="aspect-[4/3] w-full rounded-xl object-cover shadow-md"
+			/>
+		</div>
+	</li>
+{/snippet}
 
 <Section
 	id="journey"
@@ -63,28 +80,25 @@
 					<span
 						class="absolute -left-[27px] top-1.5 size-3 rounded-full border-2 border-background bg-primary"
 					></span>
-					{#if item.year}
-						<p class="text-xs font-medium tracking-widest text-primary">{item.year}</p>
-					{/if}
-					<h3 class="mt-1 font-heading text-lg font-semibold text-balance">{item.title}</h3>
-					<p class="mt-1.5 text-sm text-pretty text-muted-foreground">{item.description}</p>
+					<div class="rounded-2xl bg-card p-5 shadow-sm">
+						{#if item.year}
+							<p class="text-xs font-medium tracking-widest text-primary">{item.year}</p>
+						{/if}
+						<h3 class="mt-1 font-heading text-lg font-semibold text-balance">{item.title}</h3>
+						<p class="mt-1.5 text-sm text-pretty text-muted-foreground">{item.description}</p>
+					</div>
 				</li>
 
 				{#if (i + 1) % GROUP_SIZE === 0}
 					{@const photoIndex = Math.floor(i / GROUP_SIZE)}
 					{#if journeyPhotos[photoIndex]}
-						<li class="relative list-none py-2">
-							<div class={photoIndex % 2 === 0 ? 'ml-auto w-4/5 sm:w-3/5' : 'mr-auto w-4/5 sm:w-3/5'}>
-								<img
-									src={journeyPhotos[photoIndex]}
-									alt=""
-									loading="lazy"
-									class="aspect-[4/3] w-full rounded-xl object-cover shadow-md"
-								/>
-							</div>
-						</li>
+						{@render photoBlock(journeyPhotos[photoIndex], photoIndex)}
 					{/if}
 				{/if}
+			{/each}
+
+			{#each trailingPhotos as src, j (src)}
+				{@render photoBlock(src, usedInline + j)}
 			{/each}
 		</ol>
 

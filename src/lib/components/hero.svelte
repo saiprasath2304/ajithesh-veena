@@ -44,7 +44,7 @@
 				class="font-display text-6xl leading-[0.92] font-black text-balance text-white italic sm:text-7xl md:text-8xl"
 			>
 				{#each site.heroWords as word, i (word)}
-					<span class="hero-word block" style={`--delay: ${i * 180}ms`}>{word}</span>
+					<span class="hero-word block" style={`--delay: ${i * 300}ms`}>{word}</span>
 				{/each}
 			</h1>
 
